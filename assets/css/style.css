@@ -118,7 +118,8 @@ button[disabled] {
   resize: none;
   overflow: hidden;
 }
-.settingsPrompt {
+#settingsPrompt {
+  visibility: hidden;
   display:block;
   padding: 20px;
   background-color: rgb(255, 255, 255);
@@ -143,6 +144,13 @@ button[disabled] {
   cursor: pointer;
   transition: 0.3s;
 }
+#question{height:5vh;}
+#userInput{}
+#enter{}
+#yesbtn{}
+#nobtn{}
+
+
 #validationError{
   color:rgb(255, 0, 0);
   font-style: italic;

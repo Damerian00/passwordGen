@@ -9,14 +9,15 @@
   </head>
   <body>
     <div class="wrapper">
-      <panel class="settingsPrompt">
+      <panel id="settingsPrompt">
         <form>
-          <label id="question">Please indicate how many characters between 8 - 128 for the password.</label><br>
-          <input type="text" id="userInput" name="userInput" value=" ">
+          <p id="question">Please indicate how many characters between 8 - 128 for the password.</p>
+          <input type="number" id="userInput" name="userInput" value=" ">
           <p id = "validationError">Please enter in a number between 8 - 128 to proceed.</p>
-        </form>  
-        <button id="yesbtn" onclick="this.parentElement.style.display='none';">Yes</button> 
-        <button id="nobtn" onclick="this.parentElement.style.display='none';">No</button>  
+        </form>
+        <button id ="enter">Enter</button>  
+        <button id="yesBtn">Yes</button> 
+        <button id="noBtn">No</button>  
       </panel>
       <header>
         <h1>Password Generator</h1>
