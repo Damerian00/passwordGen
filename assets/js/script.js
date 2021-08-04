@@ -12,7 +12,8 @@ let charRequest = [];
 let entry = document.querySelector("#showResults");
 let flag= 0;
 let showRequests;
-
+let upperArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "j", "K", "L", "M", "N", "O", "P", "Q", "R","S", "T", "U", "V", "W", "X", "Y", "Z"];
+let lowerArry = []
 // Write password to the #password input
 function writePassword() {
   sP.style.visibility = "visible";
