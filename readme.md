@@ -31,12 +31,12 @@
   <h3 align="center">My Portfolio</h3>
 
   <p align="center">
-    This project is my first attempt at creating my own portfoilo.
+    This project is a password generator that allows a user to create a random password based off certain criteria they enter. This one doesn't use alerts to make prompts instead it is all done with form elements.
     <br />
-    <a href="https://github.com/Damerian00/hw2Portfolio"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Damerian00/passwordGen"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://damerian00.github.io/hw2Portfolio/">View Demo</a>
+    <a href="https://damerian00.github.io/passwordGen/">View Demo</a>
     
 </p>
 
@@ -64,7 +64,7 @@ This is my first attept at creating a portfolio for myself. It utilizes basic HT
 
 
 
-![Product Name Screen Shot](./assets/images/port_ss.png)
+![Product Name Screen Shot](./assets/images/site_ss.jpg)
 
 
 
@@ -83,7 +83,7 @@ This is my first attept at creating a portfolio for myself. It utilizes basic HT
 
 Patrick - (https://github.com/Damerian00) - GitHub Name
 
-Project Link: [https://github.com/Damerian00/hw2Portfolio]
+Project Link: [https://github.com/Damerian00/passwordGen]
 
 
 
