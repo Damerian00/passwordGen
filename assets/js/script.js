@@ -8,16 +8,20 @@ let yesBtn = document.querySelector("#yesBtn");
 let noBtn = document.querySelector("#noBtn");
 let sP = document.querySelector("#settingsPrompt");
 let passLength = 0;
-let charRequest = [];
 let entry = document.querySelector("#showResults");
 let flag= 0;
 let showRequests;
+let charRequest;
 let uArray = 0;
+let uFlag = 0;
 let lArray= 0;
+let lFlag = 0;
 let sArray = 0;
+let sFlag = 0;
 let upperArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "j", "K", "L", "M", "N", "O", "P", "Q", "R","S", "T", "U", "V", "W", "X", "Y", "Z"];
-let lowerArry = upperArray.join("").toLowerCase().split("");
+let lowerArray = upperArray.join("").toLowerCase().split("");
 let specArray = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "+", "_", "=", "[", "]", "{", "]", "|", ":", ":"]
+let password = document.getElementById().innerHTML;
 
 // Write password to the #password input
 function writePassword() {
@@ -80,27 +84,38 @@ function chooseOptions(){
   noBtn.style.visibility ="visible";
   enter.style.visibility = "hidden";
   noBtn.removeEventListener("click" , chooseOptions);
-  quest.innerHTML = "Would you like to include uppercase Letters?";
-  yesBtn.removeEventListener ("click", function yes(){uArray =1;lowerArrayQuest();});
-  noBtn.removeEventListener ("click", function no(){lowerArrayQuest();});
+  quest.innerHTML = "Would you like to include Uppercase Letters?";
+  yesBtn.addEventListener ("click", addtoArray);
+  noBtn.addEventListener ("click",  addtoArray);
 }
-  
-
-function lowerArrayQuest () {
-  yesBtn.removeEventListener ("click", function yes(){lowerArrayQuest();});
-  noBtn.removeEventListener ("click", function no(){lowerArrayQuest();});
+function addtoArray (event){
+  let parm = event.innerhtml.toLowerCase;
+  if (parm === "yes" && uFlag === 0){
+    uArray = 1;
+    uFlag = 1;
+  }else {}
   quest.innerHTML = "Would you like to include Lowercase Letters?";
-  yesBtn.removeEventListener ("click", function yes(){lArray =1;specArrayQuest();});
-  noBtn.removeEventListener ("click", function no(){specArrayQuest();});
-}
+  if(parm === "yes" && lFlag === 0){
+    lArray = 1;
+    lflag = 1;
+  }else {}
+  if (parm === "yes" && sFlag === 0){
+    sArray = 1;
+    sFlag = 1;
+  } else{}
+  if (uFlag === 1 && lFlag === 1 && sFlag === 1){
+    genArray();
+  }
+  
+}  
 
-function specArrayQuest () {
-  yesBtn.removeEventListener ("click", function yes(){specArrayQuest();});
-  noBtn.removeEventListener ("click", function no(){specArrayQuest();});
-  quest.innerHTML = "Would you like to include Special Characters?";
-  yesBtn.removeEventListener ("click", function yes(){lArray =1;lowerArrayQuest();});
-  noBtn.removeEventListener ("click", function no(){lowerArrayQuest();});
-}
+// function lowerArrayQuest () {
+//   quest.innerHTML = "Would you like to include Lowercase Letters?";
+// }
+
+// function specArrayQuest () {
+//   quest.innerHTML = "Would you like to include Special Characters?";
+// }
 
 function changeLength(){
   
@@ -124,6 +139,35 @@ function changeLength(){
     console.log(passLength);
 }
 
+function genArray (){
+  sP.style.visibility = "hidden";
+
+  if (uArray === 1 && lArray === 1 && sArray === 1){
+    charRequest = [...upperArray, ...lowerArray, ...sArray];
+    }else if (uArray === 1 && lArray === 0 && sArray === 0){
+    charRequest = upperArray.join("");
+    }else if (uArray === 1 && lArray === 0 && sArray === 1){
+    charRequest = [...upperArray, ...sArray];
+   }else if (uArray === 0 && lArray === 1 && sArray === 1){
+    charRequest = [...lowerArray, ...sArray];
+  }else if (uArray === 0 && lArray === 1 && sArray === 1){
+    charRequest = [...upperArray, ...lowerArray];
+    }else if (uArray === 0 && lArray === 1 && sArray === 0){
+    charRequest = lowerArray.join("");
+    }else if (uArray === 0 && lArray === 0 && sArray === 1){
+     charRequest = upperArray.join("");
+    }else {
+      password.innerHTML = "Can't Generate Password since you selected none"
+  }
+  for (let i = 0; i > passLength; i++){
+    random = Math.floor(Math.random()*newCArray.length)
+// password.push(neCArray[random])
+// password.join("");
+    let random = Math.floor(Math.random()*charRequest.length);
+    password.push(charRequest[random]);
+  } 
+
+}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
