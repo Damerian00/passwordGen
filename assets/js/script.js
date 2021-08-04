@@ -8,6 +8,9 @@ let yesBtn = document.querySelector("#yesBtn");
 let noBtn = document.querySelector("#noBtn");
 let sP = document.querySelector("#settingsPrompt");
 let passLength = 0;
+let charRequest = [];
+let entry = document.querySelector("#showResults");
+let flag= 0;
 
 // Write password to the #password input
 function writePassword() {
@@ -29,28 +32,34 @@ function writePassword() {
 
 }
 function selectCharTypes(){
-  quest.innerHTML = "Please indicate a character you will like to have included in the password.";
- 
-  uI.type = "text";
-  uI.setAttribute('maxlength',1);
+ vE.style.visibility = "hidden";
+ quest.innerHTML = "Please indicate a character you will like to have included in the password by inputting each character and hitting enter. Select done button when you are finished.";
+ noBtn.innerHTML = "Done";
+ noBtn.style.visibility = "visible";
+ uI.type = "text";
+ uI.setAttribute('maxlength',1);
+ let charValue = uI.value;
+ charRequest.push(charValue);
 }
 function changeLength(){
   
   passLength = uI.value;
   console.log(passLength);
-  var flag = 0;
-  
-
+  //  while(flag != 0){
     if (passLength >= 8 && passLength <= 128){
-    
+    entry.innerHTML = "Length: " + passLength;
     uI.value= " ";
     uI.style.width = "20px";
     flag = 1;
+    passLength = uI.value;
+    console.log("This flag is " + flag);
     selectCharTypes();
     }else {
       vE.style.visibility = "visible";
-      enter.addEventListener("click" , changeLength); 
-    }
+      enter.addEventListener("click" , changeLength); }
+      passLength = uI.value;
+      console.log("The flag is " + flag);
+    // }
 
 }
 

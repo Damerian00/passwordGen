@@ -145,7 +145,7 @@ button[disabled] {
   transition: 0.3s;
 }
 #question{height:5vh;}
-#userInput{}
+#userInput{width: 50px;}
 #enter{}
 #yesbtn{}
 #nobtn{}

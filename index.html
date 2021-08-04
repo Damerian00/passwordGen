@@ -12,12 +12,14 @@
       <panel id="settingsPrompt">
         <form>
           <p id="question">Please indicate how many characters between 8 - 128 for the password.</p>
-          <input type="number" id="userInput" name="userInput" value=" ">
+          <input type="number" id="userInput">
           <p id = "validationError">Please enter in a number between 8 - 128 to proceed.</p>
         </form>
         <button id ="enter">Enter</button>  
         <button id="yesBtn">Yes</button> 
-        <button id="noBtn">No</button>  
+        <button id="noBtn">No</button>
+        <p id="messageResults">Here's what you have selected so far.</p>
+        <p id ="showResults"></p> 
       </panel>
       <header>
         <h1>Password Generator</h1>
