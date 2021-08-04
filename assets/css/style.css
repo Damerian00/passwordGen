@@ -146,9 +146,10 @@ button[disabled] {
 }
 #question{height:5vh;}
 #userInput{width: 50px;}
-#enter{}
+#enter, #userInput{visibility: hidden;}
 #yesbtn{}
 #nobtn{}
+
 
 
 #validationError{

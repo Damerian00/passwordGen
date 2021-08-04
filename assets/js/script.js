@@ -18,64 +18,49 @@ let lArray= 0;
 let lFlag = 0;
 let sArray = 0;
 let sFlag = 0;
-let upperArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "j", "K", "L", "M", "N", "O", "P", "Q", "R","S", "T", "U", "V", "W", "X", "Y", "Z"];
+let upperArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R","S", "T", "U", "V", "W", "X", "Y", "Z"];
 let lowerArray = upperArray.join("").toLowerCase().split("");
-let specArray = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "+", "_", "=", "[", "]", "{", "]", "|", ":", ":"]
-let password = document.getElementById().innerHTML;
+let specArray = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "+", "_", "=", "[", "]", "{", "]", "|", ":", ":"];
+let parm;
+let passwordText = document.querySelector("#password");
+let password = [];
+let random;
+
 
 // Write password to the #password input
 function writePassword() {
+  quest.innerHTML = "Please indicate how many characters between 8 - 128 for the password."
   sP.style.visibility = "visible";
+  enter.style.visibility = "visible";
+  uI.style.visibility = "visible";
   yesBtn.style.visibility = "hidden";
   noBtn.style.visibility = "hidden";
-  vE.style.visibility = "hidden";
   enter.addEventListener("click" , changeLength);
   
-  // for (let i = 0; i < passLength; i++) {
-  //   const element = array[i];
-    
-  // };
-
-  // let password = generatePassword();
-  // let passwordText = document.querySelector("#password");
-
-  // passwordText.value = password;
-// combining arrays newCArray = [...array1, ...array2, ...array3, etc.];
-// random = Math.floor(Math.random()*newCArray.length)
-// password.push(neCArray[random])
-// password.join("");
-/* for (let i = 0; i > passLength; i++){
-
-} */
-
 }
 
-// function selectCharTypes(){
-//   vE.style.visibility = "hidden";
-//   quest.innerHTML = "Please indicate a character you will like to have included in the password by inputting each character and hitting enter. Select done button when you are finished.";
-//   noBtn.innerHTML = "Done";
-//   noBtn.style.visibility = "visible";
-//   uI.type = "text";
-//   uI.setAttribute('maxlength',1);
-//  enter.addEventListener("click" , function CharLoop(){
-//   let specChar = uI.value;
-//   let check = charRequest.indexOf(specChar);
-//   console.log(check);
-//     if (check === -1){
-//       charRequest.push(specChar);
-//       entry.innerHTML = "Length: " + passLength + " Characters Selected: " + charRequest;
-//       console.log(charRequest);
-//       console.log(specChar);
-//     } else {
-//      vE.style.visibility = "visible"; 
-//      vE.innerHTML = "That character has already been selected please make another selection or choose done." 
-//     }
-    
-//  }); 
-//  noBtn.addEventListener("click" , chooseOptions);
-// }
-
+function changeLength(){
+  passLength = uI.value;
+  console.log(passLength);
+  if (passLength >= 8 && passLength <= 128){
+    entry.innerHTML = "Length: " + passLength;
+    uI.value= "";
+    uI.style.width = "20px";
+    flag = 1;
+    console.log("This flag is " + flag);
+    enter.removeEventListener("click" , changeLength);
+    chooseOptions();
+  }else {
+    vE.innerHTML = "Please enter in a number between 8 - 128 to proceed."
+    vE.style.visibility = "visible";
+    enter.addEventListener("click" , changeLength); 
+    passLength = uI.value;
+    console.log("The flag is " + flag);
+  }
+  console.log(passLength);
+}
 function chooseOptions(){
+  generateBtn.removeEventListener("click", writePassword); 
   noBtn.innerHTML= "No";
   vE.style.visibility = "hidden";
   vE = "";
@@ -85,88 +70,93 @@ function chooseOptions(){
   enter.style.visibility = "hidden";
   noBtn.removeEventListener("click" , chooseOptions);
   quest.innerHTML = "Would you like to include Uppercase Letters?";
-  yesBtn.addEventListener ("click", addtoArray);
-  noBtn.addEventListener ("click",  addtoArray);
+  yesBtn.addEventListener ("click", addtoArrayU);
+  noBtn.addEventListener ("click",  addtoArrayU);
 }
-function addtoArray (event){
-  let parm = event.innerhtml.toLowerCase;
-  if (parm === "yes" && uFlag === 0){
+function addtoArrayU (event){
+  console.log(parm);
+  yesBtn.removeEventListener ("click", addtoArrayU);
+  noBtn.removeEventListener ("click",  addtoArrayU);
+  console.log(event.target);
+  parm = event.target.innerHTML;
+  console.log(parm);
+  if (parm === "Yes"){
     uArray = 1;
-    uFlag = 1;
-  }else {}
+  } else {
+    
+  } 
   quest.innerHTML = "Would you like to include Lowercase Letters?";
-  if(parm === "yes" && lFlag === 0){
-    lArray = 1;
-    lflag = 1;
-  }else {}
-  if (parm === "yes" && sFlag === 0){
-    sArray = 1;
-    sFlag = 1;
-  } else{}
-  if (uFlag === 1 && lFlag === 1 && sFlag === 1){
-    genArray();
-  }
+  yesBtn.addEventListener ("click", addtoArrayL);
+  noBtn.addEventListener ("click",  addtoArrayL);
   
-}  
-
-// function lowerArrayQuest () {
-//   quest.innerHTML = "Would you like to include Lowercase Letters?";
-// }
-
-// function specArrayQuest () {
-//   quest.innerHTML = "Would you like to include Special Characters?";
-// }
-
-function changeLength(){
-  
-  passLength = uI.value;
-  console.log(passLength);
-    if (passLength >= 8 && passLength <= 128){
-    vE.style.visibility = "hidden";  
-    entry.innerHTML = "Length: " + passLength;
-    uI.value= "";
-    uI.style.width = "20px";
-    flag = 1;
-    console.log("This flag is " + flag);
-    enter.removeEventListener("click" , changeLength);
-    chooseOptions();
-    }else {
-      vE.style.visibility = "visible";
-      enter.addEventListener("click" , changeLength); 
-      passLength = uI.value;
-      console.log("The flag is " + flag);
-    }
-    console.log(passLength);
 }
+ 
+function addtoArrayL (event){
+  yesBtn.removeEventListener ("click", addtoArrayL);
+  noBtn.removeEventListener ("click",  addtoArrayL);
+  console.log(event.target);
+  parm = event.target.innerHTML;
+  console.log(parm);
+  
+  if (parm === "Yes"){
+    lArray = 1;
+  } else {
+    
+  } 
+  quest.innerHTML = "Would you like to include Special Characters?";
+  yesBtn.addEventListener ("click", addtoArrayS);
+  noBtn.addEventListener ("click",  addtoArrayS);
+  
+}
+function addtoArrayS (event){
+  yesBtn.removeEventListener ("click", addtoArrayS);
+  noBtn.removeEventListener ("click",  addtoArrayS);
+  console.log(event.target);
+  parm = event.target.innerHTML;
+  console.log(parm);
+  if (parm === "Yes"){
+    sArray = 1;
+  } else {
+    
+  } 
+  
+  genArray();
+}
+
 
 function genArray (){
+  console.log(`U: ${uArray} L: ${lArray} S: ${sArray}`);
+ 
   sP.style.visibility = "hidden";
+  noBtn.style.visibility = "hidden";
+  yesBtn.style.visibility = "hidden";
+  entry.innerHTML = "";
+  uI.style.width = "50px";
 
   if (uArray === 1 && lArray === 1 && sArray === 1){
-    charRequest = [...upperArray, ...lowerArray, ...sArray];
+    charRequest = [...upperArray, ...lowerArray, ...specArray];
     }else if (uArray === 1 && lArray === 0 && sArray === 0){
     charRequest = upperArray.join("");
     }else if (uArray === 1 && lArray === 0 && sArray === 1){
-    charRequest = [...upperArray, ...sArray];
+    charRequest = [...upperArray, ...specArray];
    }else if (uArray === 0 && lArray === 1 && sArray === 1){
-    charRequest = [...lowerArray, ...sArray];
+    charRequest = [...lowerArray, ...specArray];
   }else if (uArray === 0 && lArray === 1 && sArray === 1){
     charRequest = [...upperArray, ...lowerArray];
     }else if (uArray === 0 && lArray === 1 && sArray === 0){
     charRequest = lowerArray.join("");
     }else if (uArray === 0 && lArray === 0 && sArray === 1){
-     charRequest = upperArray.join("");
+     charRequest = specArray.join("");
     }else {
-      password.innerHTML = "Can't Generate Password since you selected none"
+      passwordText.innerHTML = "Can't Generate Password since you selected none"
   }
-  for (let i = 0; i > passLength; i++){
-    random = Math.floor(Math.random()*newCArray.length)
-// password.push(neCArray[random])
-// password.join("");
-    let random = Math.floor(Math.random()*charRequest.length);
+  for (let i = 0; i < passLength; i++){
+
+    random = Math.floor(Math.random()*charRequest.length);
     password.push(charRequest[random]);
   } 
-
+  passwordText.value = password.join("");
+  generateBtn.addEventListener("click", function(){location.reload()});
 }
 
 // Add event listener to generate button
