@@ -34,29 +34,39 @@ function writePassword() {
 }
 
 function selectCharTypes(){
+  vE.style.visibility = "hidden";
+  quest.innerHTML = "Please indicate a character you will like to have included in the password by inputting each character and hitting enter. Select done button when you are finished.";
+  noBtn.innerHTML = "Done";
+  noBtn.style.visibility = "visible";
+  uI.type = "text";
+  uI.setAttribute('maxlength',1);
  enter.addEventListener("click" , function CharLoop(){
-  
-    if (specChar = !null){
-     let specChar = uI.value;
+  let specChar = uI.value;
+  let check = charRequest.indexOf(specChar);
+  console.log(check);
+    if (check === -1){
       charRequest.push(specChar);
       entry.innerHTML = "Length: " + passLength + " Characters Selected: " + charRequest;
       console.log(charRequest);
       console.log(specChar);
+    } else {
+     vE.style.visibility = "visible"; 
+     vE.innerHTML = "That character has already been selected please make another selection or choose done." 
     }
-
+    
  }); 
-
- vE.style.visibility = "hidden";
- quest.innerHTML = "Please indicate a character you will like to have included in the password by inputting each character and hitting enter. Select done button when you are finished.";
- noBtn.innerHTML = "Done";
- noBtn.style.visibility = "visible";
- uI.type = "text";
- uI.setAttribute('maxlength',1);
-//  let charValue = uI.value;
-//  charRequest.push(charValue);
- 
+ noBtn.addEventListener("click" , chooseOptions);
 }
 
+function chooseOptions(){
+  noBtn.innerHTML= "No";
+  vE.style.visibility = "hidden";
+  vE = "";
+  uI.style.visibility="hidden";
+  yesBtn.style.visibility ="visible";
+  enter.style.visibility = "hidden";
+  noBtn.removeEventListener("click" , chooseOptions);
+}
 
 
 function changeLength(){
