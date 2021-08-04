@@ -1,6 +1,6 @@
 // Assignment Code
 let generateBtn = document.querySelector("#generate");
-let ques = document.querySelector("#question");
+let quest = document.querySelector("#question");
 let uI = document.querySelector("#userInput");
 let vE = document.querySelector("#validationError");
 let enter = document.querySelector("#enter");
@@ -14,12 +14,13 @@ function writePassword() {
   sP.style.visibility = "visible";
   yesBtn.style.visibility = "hidden";
   noBtn.style.visibility = "hidden";
-   enter.addEventListener ("click" , changeLength);
+  vE.style.visibility = "hidden";
+  enter.addEventListener("click" , changeLength);
   
   for (let i = 0; i < passLength; i++) {
     const element = array[i];
     
-  }
+  };
 
   // let password = generatePassword();
   // let passwordText = document.querySelector("#password");
@@ -27,12 +28,32 @@ function writePassword() {
   // passwordText.value = password;
 
 }
-
+function selectCharTypes(){
+  quest.innerHTML = "Please indicate a character you will like to have included in the password.";
+ 
+  uI.type = "text";
+  uI.setAttribute('maxlength',1);
+}
 function changeLength(){
   
   passLength = uI.value;
   console.log(passLength);
-  // if () 
+  var flag = 0;
+  
+
+    if (passLength >= 8 && passLength <= 128){
+    
+    uI.value= " ";
+    uI.style.width = "20px";
+    flag = 1;
+    selectCharTypes();
+    }else {
+      vE.style.visibility = "visible";
+      enter.addEventListener("click" , changeLength); 
+    }
+
 }
+
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
