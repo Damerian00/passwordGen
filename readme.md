@@ -64,7 +64,7 @@ This is my first attept at creating a portfolio for myself. It utilizes basic HT
 
 
 
-![Product Name Screen Shot](./assets/images/site_ss.jpg)
+![Project Preview](./assets/images/site_ss.jpg)
 
 
 
