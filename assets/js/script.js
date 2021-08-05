@@ -13,11 +13,8 @@ let flag= 0;
 let showRequests;
 let charRequest;
 let uArray = 0;
-let uFlag = 0;
 let lArray= 0;
-let lFlag = 0;
 let sArray = 0;
-let sFlag = 0;
 let upperArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R","S", "T", "U", "V", "W", "X", "Y", "Z"];
 let lowerArray = upperArray.join("").toLowerCase().split("");
 let specArray = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "+", "_", "=", "[", "]", "{", "]", "|", ":", ":"];
@@ -41,13 +38,11 @@ function writePassword() {
 
 function changeLength(){
   passLength = uI.value;
-  console.log(passLength);
   if (passLength >= 8 && passLength <= 128){
     entry.innerHTML = "Length: " + passLength;
     uI.value= "";
     uI.style.width = "20px";
     flag = 1;
-    console.log("This flag is " + flag);
     enter.removeEventListener("click" , changeLength);
     chooseOptions();
   }else {
@@ -55,9 +50,7 @@ function changeLength(){
     vE.style.visibility = "visible";
     enter.addEventListener("click" , changeLength); 
     passLength = uI.value;
-    console.log("The flag is " + flag);
   }
-  console.log(passLength);
 }
 function chooseOptions(){
   generateBtn.removeEventListener("click", writePassword); 
@@ -74,12 +67,9 @@ function chooseOptions(){
   noBtn.addEventListener ("click",  addtoArrayU);
 }
 function addtoArrayU (event){
-  console.log(parm);
   yesBtn.removeEventListener ("click", addtoArrayU);
   noBtn.removeEventListener ("click",  addtoArrayU);
-  console.log(event.target);
   parm = event.target.innerHTML;
-  console.log(parm);
   if (parm === "Yes"){
     uArray = 1;
   } else {
@@ -94,9 +84,7 @@ function addtoArrayU (event){
 function addtoArrayL (event){
   yesBtn.removeEventListener ("click", addtoArrayL);
   noBtn.removeEventListener ("click",  addtoArrayL);
-  console.log(event.target);
   parm = event.target.innerHTML;
-  console.log(parm);
   
   if (parm === "Yes"){
     lArray = 1;
@@ -111,9 +99,7 @@ function addtoArrayL (event){
 function addtoArrayS (event){
   yesBtn.removeEventListener ("click", addtoArrayS);
   noBtn.removeEventListener ("click",  addtoArrayS);
-  console.log(event.target);
   parm = event.target.innerHTML;
-  console.log(parm);
   if (parm === "Yes"){
     sArray = 1;
   } else {
@@ -125,7 +111,6 @@ function addtoArrayS (event){
 
 
 function genArray (){
-  console.log(`U: ${uArray} L: ${lArray} S: ${sArray}`);
  
   sP.style.visibility = "hidden";
   noBtn.style.visibility = "hidden";
