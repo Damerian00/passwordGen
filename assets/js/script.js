@@ -15,9 +15,11 @@ let charRequest;
 let uArray = 0;
 let lArray= 0;
 let sArray = 0;
+let nArray = 0;
 let upperArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R","S", "T", "U", "V", "W", "X", "Y", "Z"];
 let lowerArray = upperArray.join("").toLowerCase().split("");
 let specArray = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "+", "_", "=", "[", "]", "{", "]", "|", ":", ":"];
+let numArray = (Array.from("1234567890"));
 let parm;
 let passwordText = document.querySelector("#password");
 let password = [];
@@ -90,12 +92,25 @@ function addtoArrayL (event){
     lArray = 1;
   } else {
     
-  } 
-  quest.innerHTML = "Would you like to include Special Characters?";
-  yesBtn.addEventListener ("click", addtoArrayS);
-  noBtn.addEventListener ("click",  addtoArrayS);
+  }
+  quest.innerHTML = "Would you like to include Numbers?"; 
+  yesBtn.addEventListener ("click", addtoArrayN);
+  noBtn.addEventListener ("click",  addtoArrayN);
   
 }
+function addtoArrayN (event){
+  yesBtn.removeEventListener ("click", addtoArrayN);
+  noBtn.removeEventListener ("click",  addtoArrayN);
+  parm = event.target.innerHTML;
+  if (parm === "Yes"){
+    nArray = 1;
+  } else {
+    
+  }
+  yesBtn.addEventListener ("click", addtoArrayS);
+  noBtn.addEventListener ("click",  addtoArrayS); 
+  quest.innerHTML = "Would you like to include Special Characters?";
+  } 
 function addtoArrayS (event){
   yesBtn.removeEventListener ("click", addtoArrayS);
   noBtn.removeEventListener ("click",  addtoArrayS);
@@ -118,20 +133,32 @@ function genArray (){
   entry.innerHTML = "";
   uI.style.width = "50px";
 
-  if (uArray === 1 && lArray === 1 && sArray === 1){
-    charRequest = [...upperArray, ...lowerArray, ...specArray];
-    }else if (uArray === 1 && lArray === 0 && sArray === 0){
+  if (uArray === 1 && lArray === 1 && nArray === 1 && sArray === 1){
+    charRequest = [...upperArray, ...lowerArray, ...specArray, ...numArray];
+    }else if (uArray === 1 && lArray === 0 && nArray === 0 && sArray === 0){
     charRequest = upperArray.join("");
-    }else if (uArray === 1 && lArray === 0 && sArray === 1){
+    }else if (uArray === 1 && lArray === 0 && nArray === 0 && sArray === 1){
     charRequest = [...upperArray, ...specArray];
-   }else if (uArray === 0 && lArray === 1 && sArray === 1){
+    }else if (uArray === 0 && lArray === 1 && nArray === 1 && sArray === 1){
     charRequest = [...lowerArray, ...specArray];
-  }else if (uArray === 0 && lArray === 1 && sArray === 1){
+    }else if (uArray === 0 && lArray === 1 && nArray === 1 && sArray === 1){
     charRequest = [...upperArray, ...lowerArray];
-    }else if (uArray === 0 && lArray === 1 && sArray === 0){
+    }else if (uArray === 0 && lArray === 1 && nArray === 1 && sArray === 0){
     charRequest = lowerArray.join("");
-    }else if (uArray === 0 && lArray === 0 && sArray === 1){
+    }else if (uArray === 0 && lArray === 0 && nArray === 1 && sArray === 1){
      charRequest = specArray.join("");
+    }else if (uArray === 0 && lArray === 0 && nArray === 1 && sArray === 0){
+      charRequest = numArray.join("");
+    }else if (uArray === 0 && lArray === 1 && nArray === 1 && sArray === 1){
+      charRequest = [...lowerArray, ...numArray, ...specArray];
+    }else if (uArray === 1 && lArray === 0 && nArray === 1 && sArray === 1){
+      charRequest = [...upperArray, ...numArray, ...specArray];
+    }else if (uArray === 0 && lArray === 0 && nArray === 1 && sArray === 1){
+      charRequest = [...numArray, ...specArray];
+    }else if (uArray === 1 && lArray === 0 && nArray === 1 && sArray === 0){
+      charRequest = [...numArray, ...upperArray];
+    }else if (uArray === 0 && lArray === 1 && nArray === 1 && sArray === 0){
+      charRequest = [...numArray, ...lowerArray];               
     }else {
       passwordText.innerHTML = "Can't Generate Password since you selected none"
   }
